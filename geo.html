@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport">
+
+<link rel="stylesheet" href="../geo location/geo.css">
+
+    </head>
+    <body>
+        <button id="getLocation">Get Location</button>
+        <br>
+        <a id="locationResult" target="_blank"></a>
+      </body>
+      <script>
+        const locationResult = document.querySelector('#locationResult');
+        document.querySelector('#getLocation').addEventListener('click', () => {
+          locationResult.textContent = 'Retrieving User Location...'
+      
+          function success(position) {
+            let { coords } = position;
+            locationResult.textContent = 'See my location on a map';
+            locationResult.href = `https://www.openstreetmap.org?mlat=${coords.latitude}&mlon=${coords.longitude}`;
+          }
+      
+          navigator.geolocation.getCurrentPosition(success);
+        });
+      </script>
+</html>
